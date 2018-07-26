@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10.4
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+
+  web:
+    build: .
+    env_file:
+      - .env
+    image: cybernews
+    container_name: cybernews
+    command: sh ./run_web.sh
+    volumes:
+      - ./code:/code
+      - ./code/cybernews_web/static:/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+
+volumes:
+  db_volume: {}
