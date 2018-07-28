@@ -1,9 +1,11 @@
-import newspaper
 import time
-from scrapy.exceptions import DropItem
-from collection.models import Entry, Article
-from .seen_url_database import SeenURLDatabase
+
+import newspaper
+from collection.models import Article, Entry
 from django.db import IntegrityError
+from scrapy.exceptions import DropItem
+
+from .seen_url_database import SeenURLDatabase
 
 
 class NewsScraperPipeline(object):

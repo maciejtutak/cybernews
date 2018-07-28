@@ -1,6 +1,7 @@
 import os
 import sys
 import django
+import logging
 
 
 # DJANGO INTEGRATION
@@ -54,6 +55,10 @@ SPIDER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     'scraper.pipelines.NewsScraperPipeline': 300,
 }
+
+LOG_FILE = './scraperlog.txt'
+LOG_LEVEL = logging.info
+LOG_ENABLED = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
