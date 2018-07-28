@@ -1,6 +1,6 @@
 import dill as pickle
 from django.core.management.base import BaseCommand, CommandError
-from main.models import Entry, Tag
+from collection.models import Entry, Tag
 import logging
 
 
@@ -14,6 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         labels = Tag.objects.all()
 
+        # helper function for TFIDF Vectorizer
         def identity(arg):
             return arg
 
@@ -46,6 +47,6 @@ class Command(BaseCommand):
                     entry.tags.add(tag)
                 entry.save()
 
-            self.logger.info('classify done')
+            self.logger.info('classify completed.')
 
 
