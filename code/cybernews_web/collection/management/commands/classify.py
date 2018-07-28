@@ -1,7 +1,8 @@
-import dill as pickle
-from django.core.management.base import BaseCommand, CommandError
-from collection.models import Entry, Tag
 import logging
+
+import dill as pickle
+from collection.models import Entry, Tag
+from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):
