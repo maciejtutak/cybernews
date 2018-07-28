@@ -33,7 +33,7 @@ class Article(models.Model):
     pub_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return "Article ID: {} | Title: {}".format(self.id, self.title)
+        return "{} | title: {}".format(self.id, self.title)
 
     # source domain added before the slug
     def _get_unique_slug(self):
