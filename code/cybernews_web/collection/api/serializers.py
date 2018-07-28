@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, StringRelatedField
 
-from main.models import Tag, Article, Entry
+from collection.models import Tag, Article, Entry
 
 
 class TagSerializer(ModelSerializer):

@@ -1,4 +1,4 @@
-from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from django_filters import rest_framework as filters
 
 from ..models import Tag, Entry, Article
