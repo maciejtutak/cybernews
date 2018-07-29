@@ -56,9 +56,9 @@ ITEM_PIPELINES = {
     'scraper.pipelines.NewsScraperPipeline': 300,
 }
 
-LOG_FILE = './scraperlog.txt'
-LOG_LEVEL = logging.info
-LOG_ENABLED = True
+# LOG_FILE = './scraperlog.txt'
+# LOG_LEVEL = logging.info
+# LOG_ENABLED = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
