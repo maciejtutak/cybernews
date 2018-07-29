@@ -10,7 +10,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'cybernews_web.settings'
 django.setup()
 
 
-BOT_NAME = 'cybernews_scraper'
+BOT_NAME = 'cybernews'
 
 SPIDER_MODULES = ['scraper.spiders']
 NEWSPIDER_MODULE = 'scraper.spiders'

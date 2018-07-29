@@ -2,7 +2,9 @@ FROM python:3.6
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y cron
-RUN crontab -l > temp; env >> temp; echo "12 */1 * * * /code/get_data.sh >> /code/get_data.log 2>&1" >> temp; crontab temp; rm temp
+RUN crontab -l > temp; env >> temp; echo "12 */2 * * * /code/get_data.sh >> /code/get_data.log 2>&1" >> temp; crontab
+ temp; rm temp
+RUN /etc/init.d/cron start
 
 RUN mkdir /config
 ADD requirements.txt /config/
