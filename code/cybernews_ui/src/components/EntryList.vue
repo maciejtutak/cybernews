@@ -56,7 +56,7 @@
         this.items.forEach((item) => {
           if (moment(item.article.pub_date).date() === moment().date()) {
             today.push(item);
-          } else if (moment(item.article.pub_date).date() === moment().date() - 1) {
+          } else if (moment(item.article.pub_date).date() === moment().subtract(1, 'days').date()) {
             yesterday.push(item);
           } else {
             pastWeek.push(item);
