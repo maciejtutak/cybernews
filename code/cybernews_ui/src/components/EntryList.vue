@@ -1,14 +1,19 @@
 <template>
-  <masonry
-    :cols="{default: 2, 600: 1}"
-    :gutter="30"
-  >
-    <EntryListItem
-      v-for="item in items"
-      v-bind:item="item"
-      v-bind:key="item.id"
-    ></EntryListItem>
-  </masonry>
+  <div>
+    <template v-for="(day, index) in splitIntoDays">
+      <h1 v-if="day.length > 0">{{ sections[index] }}</h1>
+      <masonry
+        :cols="{default: 2, 600: 1}"
+        :gutter="30"
+      >
+      <EntryListItem
+        v-for="item in day"
+        v-bind:item="item"
+        v-bind:key="item.id"
+        ></EntryListItem>
+      </masonry>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -25,11 +30,12 @@
       return {
         count: "",
         next: "",
-        items: []
+        items: [],
+        sections: ["Today", "Yesterday", "Past Week"]
       }
     },
 
-    created () {
+    mounted () {
       axios
         .get('http://localhost:8000/api/entries/?limit=50')
         .then((response) => {
@@ -39,34 +45,31 @@
           })
         .catch((error) => {
             console.error(error);
-          })
-
+          });
     },
 
     computed: {
       splitIntoDays: function () {
-        // return this.splitIntoDays(this.items);
+        let today = [];
+        let yesterday = [];
+        let pastWeek = [];
+        this.items.forEach((item) => {
+          if (moment(item.article.pub_date).date() === moment().date()) {
+            today.push(item);
+          } else if (moment(item.article.pub_date).date() === moment().date() - 1) {
+            yesterday.push(item);
+          } else {
+            pastWeek.push(item);
+          }
+        });
+        return [today, yesterday, pastWeek];
       }
     },
 
     methods: {
-      splitIntoDays: function (results) {
-        //   let today = Date.now();
-        console.log('splitIntoDays', results, new Date().getDate());
-          results.forEach((result) => {
-           console.log(new Date(result.article.pub_date).getDate() > (new Date().getDate() - 1));
-          });
-          // let today = results.filter(result => new Date(result.article.pub_date).getDay());
-          // console.log(today);
-        return results;
-      },
-    }
+    },
   }
 </script>
 
 <style scoped>
-  @media (min-width: 48em) {
-    .entry-list {
-    }
-  }
 </style>
