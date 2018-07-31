@@ -20,12 +20,12 @@ class Tag(models.Model):
 
 class Article(models.Model):
     """Represents a single article."""
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=500)
     text = models.TextField()
 
     source = models.CharField(max_length=100)
     url = models.URLField(unique=True)
-    slug = models.SlugField(max_length=220, unique=True)
+    slug = models.SlugField(max_length=500, unique=True)
     image_url = models.URLField(blank=True)
 
     length = models.IntegerField()
