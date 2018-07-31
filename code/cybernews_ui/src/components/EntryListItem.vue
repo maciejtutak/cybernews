@@ -47,14 +47,14 @@
 }
 
 .item-card:hover {
-  box-shadow: 0 2px 8px 0 var(--secondary-accent-color);
+  box-shadow: 0 3px 5px 0 var(--secondary-accent-color);
   transition-duration: 0.5s;
 }
 
 .item-image {
   width: 100%;
   height: auto;
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 

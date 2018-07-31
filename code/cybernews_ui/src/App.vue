@@ -4,12 +4,6 @@
     <div class="grid">
       <h2 class="grid-trending">TRENDING TOPICS: TRUMP | APPLE | FACEBOOK</h2>
       <ul class="grid-sidebar">
-        <li class="sidebar-item">bugs, threats & vulnerabilities</li>
-        <li class="sidebar-item">cryptocurrencies</li>
-        <li class="sidebar-item">cyberwarfare & intel</li>
-        <li class="sidebar-item">data, cloud, infosec</li>
-        <li class="sidebar-item">law & politics</li>
-        <li class="sidebar-item">...</li>
       </ul>
       <EntryList class="grid-list"></EntryList>
     </div>
@@ -17,12 +11,15 @@
 </template>
 
 <script>
-  import TheHeader from './components/TheHeader.vue'
-  import EntryList from './components/EntryList.vue'
+  import TheHeader from './components/TheHeader.vue';
+  import EntryList from './components/EntryList.vue';
+  import TagList from './components/TagList.vue';
+
   export default {
     components: {
       TheHeader,
       EntryList,
+      TagList,
     }
   }
 </script>
@@ -121,11 +118,11 @@ li {
 .grid-header {
   grid-area: head;
   padding: 0 20px;
+  /*position: fixed;*/
 }
 
 .grid-trending {
   grid-area: trending;
-
   justify-self: center;
   align-self: center;
   width: 100%;
@@ -140,7 +137,6 @@ li {
 
 .grid-sidebar {
   grid-area: aside;
-
   width: 100%;
   height: auto;
   padding: 10px;
@@ -161,6 +157,7 @@ li {
 
 .grid-list {
   grid-area: main;
+  padding: 10px;
 }
 
 </style>

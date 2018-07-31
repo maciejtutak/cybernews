@@ -1,5 +1,7 @@
 #!/bin/sh
 
+crontab -l > temp; env >> temp; echo "12 */2 * * * /code/get_data.sh >> /code/get_data.log 2>&1" >> temp; crontab temp; rm temp
+service cron start
 # wait for PSQL server to start
 sleep 10
 
