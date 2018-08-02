@@ -35,10 +35,10 @@ class Article(models.Model):
     def __str__(self):
         return "{} | title: {}".format(self.id, self.title)
 
-    # source domain added before the slug
+    # source domain and id added to the slug
     def _get_unique_slug(self):
         source_domain = self.source[:self.source.index('.')]
-        slug = slugify(unidecode(source_domain + ' ' + self.title))
+        slug = slugify(unidecode(source_domain + ' ' + self.title + ' ' + self.created))
         return slug
 
     # override default save to create slugs
@@ -63,7 +63,7 @@ class Entry(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     tagged = models.BooleanField(default=False)
     user_reviewed = models.BooleanField(default=False)
-    slug = models.SlugField(max_length=220, unique=True)
+    slug = models.SlugField(max_length=520, unique=True)
 
     article = models.OneToOneField(
         Article,
@@ -74,10 +74,10 @@ class Entry(models.Model):
     def __str__(self):
         return "Entry/Article: {}/{} | reviewed: {}".format(self.id, self.article.title, self.user_reviewed)
 
-    # source domain added before the slug
+    # source domain and id added to the slug
     def _get_unique_slug(self):
         source_domain = self.article.source[:self.article.source.index('.')]
-        slug = slugify(unidecode(source_domain + ' ' + self.article.title))
+        slug = slugify(unidecode(source_domain + ' ' + self.article.title + ' ' + self.created))
         return slug
 
     # override default save to create slugs
