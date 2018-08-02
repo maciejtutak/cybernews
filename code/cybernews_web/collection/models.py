@@ -38,7 +38,7 @@ class Article(models.Model):
     # source domain and id added to the slug
     def _get_unique_slug(self):
         source_domain = self.source[:self.source.index('.')]
-        slug = slugify(unidecode(source_domain + ' ' + self.title + ' ' + self.created))
+        slug = slugify(unidecode(source_domain + ' ' + self.title + ' ' + self.pub_date))
         return slug
 
     # override default save to create slugs
