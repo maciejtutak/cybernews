@@ -16,7 +16,7 @@
   import moment from 'moment';
 
   export default {
-    name: "EntryListItem",
+    name: 'EntryListItem',
     props: ['item'],
 
     methods: {

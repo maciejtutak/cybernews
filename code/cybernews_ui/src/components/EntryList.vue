@@ -17,27 +17,27 @@
 </template>
 
 <script>
-  import axios from "axios";
-  import moment from "moment";
+  import {axiosBase} from '../utils/axiosBase';
+  import moment from 'moment';
 
-  import EntryListItem from "./EntryListItem";
+  import EntryListItem from './EntryListItem';
   export default {
-    name: "EntryList",
+    name: 'EntryList',
     components: {
       EntryListItem,
     },
     data () {
       return {
-        count: "",
-        next: "",
+        count: '',
+        next: '',
         items: [],
-        sections: ["Today", "Yesterday", "Past Week"]
+        sections: ['Today', 'Yesterday', 'Past Week']
       }
     },
 
     mounted () {
-      axios
-        .get('http://localhost:8000/api/entries/?limit=50')
+      axiosBase
+        .get('/api/entries/?limit=50')
         .then((response) => {
             this.count = response.data.count;
             this.next = response.data.next;

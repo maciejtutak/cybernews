@@ -1,11 +1,11 @@
 <template>
-
 </template>
 
 <script>
-    export default {
-        name: "TagList"
-    }
+  export default {
+    name: 'TagList',
+
+  }
 </script>
 
 <style scoped>

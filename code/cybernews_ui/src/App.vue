@@ -4,6 +4,7 @@
     <div class="grid">
       <h2 class="grid-trending">TRENDING TOPICS: TRUMP | APPLE | FACEBOOK</h2>
       <ul class="grid-sidebar">
+        <li v-for="tag in tags">{{ tag.name }}</li>
       </ul>
       <EntryList class="grid-list"></EntryList>
     </div>
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+  import {axiosBase} from './utils/axiosBase';
+
   import TheHeader from './components/TheHeader.vue';
   import EntryList from './components/EntryList.vue';
   import TagList from './components/TagList.vue';
@@ -20,6 +23,23 @@
       TheHeader,
       EntryList,
       TagList,
+    },
+
+    data () {
+      return {
+        tags: []
+      }
+    },
+
+    mounted () {
+      axiosBase
+        .get('/api/tags')
+        .then(response => {
+          this.tags = response.data.results
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   }
 </script>

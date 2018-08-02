@@ -14,7 +14,7 @@ services:
       - .env
     image: cybernews
     container_name: cybernews
-    command: sh ./run_web.sh
+    command: ./run_web.sh
     volumes:
       - ./code:/code
       - ./code/cybernews_web/static:/static
