@@ -46,6 +46,7 @@ class Command(BaseCommand):
                         entry.tags.add(tag)
                     entry.save()
             else:
+                print('There are no new articles.')
                 logger.info('There are no new articles.')
 
             logger.info('classify completed.')

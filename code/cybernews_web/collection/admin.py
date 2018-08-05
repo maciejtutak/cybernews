@@ -9,7 +9,7 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    readonly_fields = ('slug', )
+    pass
 
 
 @admin.register(Entry)

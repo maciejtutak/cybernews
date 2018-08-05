@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
-from django.utils.text import slugify
 from unidecode import unidecode
+from django.utils.text import slugify
+
 
 
 class Tag(models.Model):
@@ -14,7 +15,7 @@ class Tag(models.Model):
 
     # override default save to create slugs
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self, 'name', 'slug')
         super().save(*args, **kwargs)
 
 
@@ -25,7 +26,6 @@ class Article(models.Model):
 
     source = models.CharField(max_length=100)
     url = models.URLField(unique=True)
-    slug = models.SlugField(max_length=500, unique=True)
     image_url = models.URLField(blank=True)
 
     length = models.IntegerField()
@@ -34,18 +34,6 @@ class Article(models.Model):
 
     def __str__(self):
         return "{} | title: {}".format(self.id, self.title)
-
-    # source domain and id added to the slug
-    def _get_unique_slug(self):
-        source_domain = self.source[:self.source.index('.')]
-        slug = slugify(unidecode(source_domain + ' ' + self.title + ' ' + self.pub_date))
-        return slug
-
-    # override default save to create slugs
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = self._get_unique_slug()
-        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-pub_date']
@@ -77,7 +65,7 @@ class Entry(models.Model):
     # source domain and id added to the slug
     def _get_unique_slug(self):
         source_domain = self.article.source[:self.article.source.index('.')]
-        slug = slugify(unidecode(source_domain + ' ' + self.article.title + ' ' + self.created))
+        slug = slugify(unidecode(str(self.article.id) + ' ' + source_domain + ' ' + self.article.title))
         return slug
 
     # override default save to create slugs
