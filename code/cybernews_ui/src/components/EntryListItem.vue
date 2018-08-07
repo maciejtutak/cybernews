@@ -25,10 +25,10 @@
     filters: {
       moment: function (date) {
         return moment(date).calendar(null, {
-          sameDay: '[Today at] h:mm',
-          lastDay: '[Yesterday at] h:mm',
-          lastWeek: 'DD/MM/YYYY [at] h:mm',
-          sameElse: 'DD/MM/YYYY [at] h:mm'
+          sameDay: '[Today at] HH:mm',
+          lastDay: '[Yesterday at] HH:mm',
+          lastWeek: 'DD/MM/YYYY [at] HH:mm',
+          sameElse: 'DD/MM/YYYY [at] HH:mm'
         });
       },
       duration: function (length) {
