@@ -2,18 +2,15 @@
   <div id="app">
     <TheHeader class="grid-header"></TheHeader>
     <div class="grid">
-      <h2 class="grid-trending">TRENDING TOPICS: TRUMP | APPLE | FACEBOOK</h2>
-      <ul class="grid-sidebar">
-        <li v-for="tag in tags">{{ tag.name }}</li>
-      </ul>
+      <!--<h2 class="grid-trending">TRENDING TOPICS: TRUMP | APPLE | FACEBOOK</h2>-->
+      <TagList class="grid-sidebar">
+      </TagList>
       <EntryList class="grid-list"></EntryList>
     </div>
   </div>
 </template>
 
 <script>
-  import {axiosBase} from './utils/axiosBase';
-
   import TheHeader from './components/TheHeader.vue';
   import EntryList from './components/EntryList.vue';
   import TagList from './components/TagList.vue';
@@ -24,23 +21,6 @@
       EntryList,
       TagList,
     },
-
-    data () {
-      return {
-        tags: []
-      }
-    },
-
-    mounted () {
-      axiosBase
-        .get('/api/tags')
-        .then(response => {
-          this.tags = response.data.results
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
   }
 </script>
 
@@ -55,8 +35,6 @@
   --primary-accent-color: lightgray;
   --secondary-accent-color: gray;
   }
-
-
 
 #app {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -76,23 +54,32 @@ a {
 }
 
 /* fonts */
-
 h1 {
-  font-size: 24px;
+  font-size: calc(18px + (26 - 18) * (100vw - 320px) / (1200 - 320));
   font-weight: 500;
 }
 
 h2 {
-  font-size: 18px;
+  font-size: calc(16px + (22 - 16) * (100vw - 320px) / (1200 - 320));
   font-weight: 600;
 }
 
-h3 {
-  font-size: 16px;
+p {
+  font-size: calc(12px + (14 - 12) * (100vw - 320px) / (1200 - 320));
 }
 
-p {
-  font-size: 14px;
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 14px;
+  }
 }
 
 ul {
@@ -101,11 +88,18 @@ ul {
 }
 
 li {
-  display: inline-block;
-  margin: 0 10px;
+  display: block;
+  margin: 5px 10px;
+}
+
+@media screen and (max-width: 48em) {
+  li {
+    display: inline-block;
+  }
 }
 
 
+/* main grid layout */
 .grid {
   display: grid;
   grid-template-areas:
@@ -115,23 +109,22 @@ li {
     "main";
   grid-template-columns: auto;
   grid-template-rows: auto;
-  max-width: 1200px;
+  min-width: 320px;
   margin: auto;
 }
 
-@media (min-width: 48em) {
+@media screen and (min-width: 48em) {
   .grid {
     display: grid;
     grid-template-areas:
       "head head"
       "trending trending"
       "aside main";
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 5fr;
     grid-template-rows: auto;
     justify-items: center;
     padding: 0 20px;
     max-width: 1200px;
-    margin: auto;
   }
 }
 
@@ -160,20 +153,8 @@ li {
   width: 100%;
   height: auto;
   padding: 10px;
+  justify-content: space-between;
 }
-
-.sidebar-item {
-  font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--primary-text-color, black);
-}
-
-.sidebar-item:hover {
-  color: var(--secondary-text-color);
-}
-
 
 .grid-list {
   grid-area: main;

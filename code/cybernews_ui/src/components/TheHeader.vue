@@ -33,17 +33,12 @@ header {
 }
 
 .logo {
-  justify-self: start;
-  align-self: center;
+  margin: 0 10px;
   font-size: 26px;
   font-weight: bold;
   text-transform: uppercase;
+  justify-self: start;
+  align-self: center;
 }
 
-.logo strong {
-}
-
-nav {
-  flex-grow: 2;
-}
 </style>
