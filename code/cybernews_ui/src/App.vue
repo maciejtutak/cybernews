@@ -3,8 +3,9 @@
     <TheHeader class="grid-header"></TheHeader>
     <div class="grid">
       <!--<h2 class="grid-trending">TRENDING TOPICS: TRUMP | APPLE | FACEBOOK</h2>-->
-      <TagList class="grid-sidebar">
-      </TagList>
+      <div class="grid-sidebar">
+        <TagList></TagList>
+      </div>
       <EntryList class="grid-list"></EntryList>
     </div>
   </div>

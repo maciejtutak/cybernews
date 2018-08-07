@@ -4,13 +4,12 @@
       <h1 v-if="day.length > 0">{{ sections[index] }}</h1>
       <masonry
         :cols="{default: 2, 600: 1}"
-        :gutter="30"
-      >
-      <EntryListItem
-        v-for="item in day"
-        v-bind:item="item"
-        v-bind:key="item.id"
-        ></EntryListItem>
+        :gutter="30">
+          <EntryListItem
+            v-for="item in day"
+            v-bind:item="item"
+            v-bind:key="item.id">
+          </EntryListItem>
       </masonry>
     </template>
   </div>

@@ -1,6 +1,6 @@
 const QueryStore = {
   data: {
-    query: 'http://localhost:8000/api/entries/?limit=50'
+    query: 'http://localhost:8000/api/entries/'
   },
   methods: {
     setQuery(query) {

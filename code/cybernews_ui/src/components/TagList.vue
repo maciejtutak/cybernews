@@ -1,8 +1,13 @@
 <template>
   <ul>
-    <li class="sidebar-item" v-for="tag in tags">{{ tag.name }}</li>
-    <li class="sidebar-item"><a v-on:click="filterTag">something</a></li>
-    <li class="sidebar-item"><a v-on:click="filterTag2">something2</a></li>
+    <li class="sidebar-item" v-for="tag in tags">
+      <input type="checkbox"
+             :id="tag.name"
+             :value="tag.slug"
+             v-model="selectedTags">
+      <label :for="tag.name">{{ tag.name }}</label>
+    </li>
+    <!--<li class="sidebar-item"><a v-on:click="filterTag2">something2</a></li>-->
   </ul>
 </template>
 
@@ -17,6 +22,7 @@
     data () {
       return {
         tags: [],
+        selectedTags: []
       }
     },
 
@@ -31,14 +37,15 @@
         });
     },
 
-    methods: {
-      filterTag() {
-        console.log('something clicked');
-        QueryStore.methods.setQuery('http://localhost:8000/api/entries/?limit=30');
-      },
-      filterTag2() {
-        console.log('something2 clicked');
-        QueryStore.methods.setQuery('http://localhost:8000/api/entries/?limit=10');
+    watch: {
+      selectedTags (newTags) {
+        console.log(newTags);
+        let filterString = '';
+        newTags.forEach((tag) => {
+          filterString += 'tags=' + tag + '&';
+          console.log(filterString);
+        });
+        QueryStore.methods.setQuery('http://localhost:8000/api/entries/?' + filterString);
       }
     },
 
