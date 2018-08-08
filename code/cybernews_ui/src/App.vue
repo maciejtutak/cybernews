@@ -27,15 +27,16 @@
 
 
 <style>
-  /* variables */
-  :root {
+/* variables */
+:root {
   --primary-text-color: #242124;
   --secondary-text-color: orange;
   --small-text-color: #655d5f;
   --primary-bg-color: #fafafa;
   --primary-accent-color: lightgray;
   --secondary-accent-color: gray;
-  }
+  --primary-tag-color: lightgray;
+}
 
 #app {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

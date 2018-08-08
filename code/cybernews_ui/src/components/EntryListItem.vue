@@ -5,6 +5,8 @@
       <div class="item-description">
         <div class="item-source">{{ item.article.source }}</div>
         <h1>{{ item.article.title }}</h1>
+        <ul><li v-for="tag in item.tags">{{ tag }}</li></ul>
+        <hr>
         <div class="item-date">{{ item.article.pub_date | moment }}</div>
         <div class="item-meta">{{ item.article.length | duration }} min read &bull; {{ item.article.author }}</div>
       </div>
@@ -51,6 +53,19 @@
   transition-duration: 0.5s;
 }
 
+.item-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item-card li {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--primary-tag-color);
+}
+
 .item-image {
   width: 100%;
   height: auto;
@@ -60,6 +75,11 @@
 
 .item-description {
   padding: 20px 15px;
+}
+
+.item-description hr {
+  margin-top: -5px;
+  border-top: 1px solid lightgray;
 }
 
 .item-date {
