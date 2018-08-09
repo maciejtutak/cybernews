@@ -18,13 +18,14 @@
 
 <style scoped>
 header {
+  margin-bottom: 10px;
+  padding: 15px 0;
   width: 100%;
   /* background-color: var(--primary-bg-color, white); */
   background-color: white;
   color: var(--primary-text-color, black);
   box-shadow: 0 8px 10px -10px lightgray;
   /*border-bottom: 2px solid rgba(191, 191, 191, 0.99);*/
-  padding: 15px 0;
 }
 
 .header-wrapper {

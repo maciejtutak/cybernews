@@ -11,6 +11,7 @@
             v-bind:key="item.id">
           </EntryListItem>
       </masonry>
+      <div class="spacer"></div>
     </template>
   </div>
 </template>
@@ -33,14 +34,13 @@
         next: '',
         items: [],
         QueryStore: QueryStore.data,
-        sections: ['Today', 'Yesterday', 'Past Week']
+        sections: ['Today', 'Yesterday', 'Past Stories']
       }
     },
 
     watch: {
       QueryStore: {
         handler: function(newQuery, oldQuery) {
-        // console.log('query watch triggered');
         axios
           .get(newQuery.query)
           .then((response) => {
@@ -54,10 +54,6 @@
         },
         deep: true,
       },
-      // items: function(newItems, oldItems) {
-      //   console.log('items watch triggered');
-      //   console.log(newItems);
-      // }
     },
 
     mounted () {
@@ -77,17 +73,17 @@
       splitIntoDays () {
         let today = [];
         let yesterday = [];
-        let pastWeek = [];
+        let past = [];
         this.items.forEach((item) => {
           if (moment(item.article.pub_date).date() === moment().date()) {
             today.push(item);
           } else if (moment(item.article.pub_date).date() === moment().subtract(1, 'days').date()) {
             yesterday.push(item);
           } else {
-            pastWeek.push(item);
+            past.push(item);
           }
         });
-        return [today, yesterday, pastWeek];
+        return [today, yesterday, past];
       }
     },
   }
@@ -95,7 +91,11 @@
 
 <style scoped>
 h1 {
-  margin: 40px 0 20px 0;
+  margin: 20px 0 20px 0;
   width: 100%;
+}
+
+.spacer {
+  padding-bottom: 40px;
 }
 </style>

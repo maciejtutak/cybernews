@@ -69,7 +69,7 @@ a {
 
 /* fonts */
 h1 {
-  font-size: calc(22px + (32 - 22) * (100vw - 320px) / (1200 - 320));
+  font-size: calc(24px + (32 - 24) * (100vw - 320px) / (1200 - 320));
   font-weight: 500;
 }
 
