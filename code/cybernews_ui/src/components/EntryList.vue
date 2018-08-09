@@ -11,9 +11,9 @@
             v-bind:key="item.id">
           </EntryListItem>
       </masonry>
-      <div class="spacer"></div>
+      <div v-if="day.length > 0" class="spacer"></div>
     </template>
-    <button v-on:click="loadMoreEntries">Load More</button>
+    <button v-on:click="loadMoreEntries" class="load-more-button">Load More</button>
   </div>
 </template>
 
@@ -113,5 +113,23 @@ h1 {
 
 .spacer {
   padding-bottom: 40px;
+}
+
+.load-more-button {
+  margin: 0 auto 10px;
+  padding: 10px 30px;
+  border: 0;
+  display: block;
+  border-radius: 5px;
+  background-color: lightgray;
+  font-size: 100%;
+  font-family: inherit;
+  font-weight: 500;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.load-more-button:hover {
+  background-color: var(--secondary-text-color, orange);
 }
 </style>
