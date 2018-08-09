@@ -4,7 +4,7 @@
       <img class="item-image" :src="item.article.image_url" />
       <div class="item-description">
         <div class="item-source">{{ item.article.source }}</div>
-        <h1>{{ item.article.title }}</h1>
+        <h2>{{ item.article.title }}</h2>
         <ul><li v-for="tag in item.tags">{{ tag }}</li></ul>
         <hr>
         <div class="item-date">{{ item.article.pub_date | moment }}</div>

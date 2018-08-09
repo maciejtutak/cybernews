@@ -1,11 +1,12 @@
 const QueryStore = {
   data: {
-    query: 'http://localhost:8000/api/entries/'
+    baseQuery: 'http://localhost:8000/api/entries/',
+    query: ''
   },
 
   methods: {
-    getQuery() {
-      return QueryStore.data.query;
+    getBaseQuery() {
+      return QueryStore.data.baseQuery;
     },
     setQuery(query) {
       console.log('setQuery triggered');

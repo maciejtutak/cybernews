@@ -1,58 +1,37 @@
 <template>
-  <ul class="sidebar-list">
-    <li class="sidebar-item" v-for="tag in tags">
-      <input type="checkbox"
-             :id="tag.name"
-             :value="tag.slug"
-             v-model="selectedTags">
-      <label :for="tag.name">{{ tag.name }}</label>
-    </li>
-  </ul>
+  <div class="sidebar-item">
+    <input type="checkbox"
+           id="editor"
+           v-model="reviewedByEditor">
+    <label for="editor">reviewed by editor: {{ reviewedByEditor }}</label>
+  </div>
 </template>
 
 <script>
-  import axios from 'axios';
-
   import FilterStore from '../stores/FilterStore';
   import QueryStore from '../stores/QueryStore';
 
   export default {
-    name: 'TagList',
+    name: 'MetaList',
 
     data () {
       return {
-        tags: [],
-        selectedTags: []
+        reviewedByEditor: FilterStore.data.reviewedByEditor
       }
-    },
-
-    mounted () {
-      axios
-        .get('http://localhost:8000/api/tags/')
-        .then(response => {
-          this.tags = response.data.results
-        })
-        .catch(error => {
-          console.error(error);
-        });
     },
 
     watch: {
-      selectedTags (newTags) {
-        FilterStore.methods.setSelectedTags(newTags);
+      reviewedByEditor(newValue) {
+        FilterStore.methods.setReviewedByEditor(newValue);
         QueryStore.methods.setQuery(QueryStore.methods.getBaseQuery() + FilterStore.methods.getFilterQuery());
       }
-    },
-
+    }
   }
 </script>
 
 <style scoped>
-.sidebar-list {
-  margin: 0;
-}
-
 .sidebar-item {
+  margin: 5px 10px;
   font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1200 - 320));
   font-weight: 500;
   color: var(--primary-text-color, black);

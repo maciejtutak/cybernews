@@ -19,8 +19,9 @@
   import axios from 'axios';
   import moment from 'moment';
 
-  import QueryStore from '../utils/QueryStore';
+  import QueryStore from '../stores/QueryStore';
   import EntryListItem from './EntryListItem';
+
   export default {
     name: 'EntryList',
     components: {
@@ -39,7 +40,7 @@
     watch: {
       QueryStore: {
         handler: function(newQuery, oldQuery) {
-        console.log('query watch triggered');
+        // console.log('query watch triggered');
         axios
           .get(newQuery.query)
           .then((response) => {
@@ -53,15 +54,15 @@
         },
         deep: true,
       },
-      items: function(newItems, oldItems) {
-        console.log('items watch triggered');
-        console.log(newItems);
-      }
+      // items: function(newItems, oldItems) {
+      //   console.log('items watch triggered');
+      //   console.log(newItems);
+      // }
     },
 
     mounted () {
       axios
-        .get(this.QueryStore.query)
+        .get(QueryStore.methods.getBaseQuery())
         .then((response) => {
             this.count = response.data.count;
             this.next = response.data.next;
