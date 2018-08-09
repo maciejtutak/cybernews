@@ -1,11 +1,16 @@
 <template>
   <a :href="item.article.url">
     <div class="item-card">
+      <div v-if="item.user_reviewed" class="item-reviewed">
+        &#10004;
+      </div>
       <img class="item-image" :src="item.article.image_url" />
       <div class="item-description">
         <div class="item-source">{{ item.article.source }}</div>
         <h2>{{ item.article.title }}</h2>
-        <ul><li v-for="tag in item.tags">{{ tag }}</li></ul>
+        <ul>
+          <li v-for="tag in item.tags">{{ tag }}</li>
+        </ul>
         <hr>
         <div class="item-date">{{ item.article.pub_date | moment }}</div>
         <div class="item-meta">{{ item.article.length | duration }} min read &bull; {{ item.article.author }}</div>
@@ -42,6 +47,7 @@
 
 <style scoped>
 .item-card {
+  position: relative;
   margin-bottom: 25px;
   background: white;
   box-shadow: 0 3px 5px 0 lightgray;
@@ -66,9 +72,22 @@
   background-color: var(--primary-tag-color);
 }
 
+.item-reviewed {
+  display: grid;
+  position: absolute;
+  top: 220px;
+  right: 0;
+  width: 32px;
+  height: 24px;
+  border-radius: 10px 0 0 10px;
+  background-color: var(--success-color, green);
+  text-align: center;
+  font-size: 20px;
+}
+
 .item-image {
   width: 100%;
-  height: auto;
+  height: 200px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }

@@ -10,7 +10,9 @@ const FilterStore = {
       FilterStore.data.selectedTags.forEach((tag) => {
         filterString += 'tags=' + tag + '&';
       });
-      filterString += 'user_reviewed=' + FilterStore.data.reviewedByEditor;
+      if (FilterStore.data.reviewedByEditor) {
+        filterString += 'user_reviewed=' + FilterStore.data.reviewedByEditor;
+      }
       return filterString;
     },
     setSelectedTags(selectedTags) {

@@ -4,7 +4,12 @@
     <div class="grid">
       <!--<h2 class="grid-trending">TRENDING TOPICS: TRUMP | APPLE | FACEBOOK</h2>-->
       <div class="grid-sidebar">
+        <h2>Topic</h2>
         <TagList></TagList>
+        <h2>Date</h2>
+        <DateInput></DateInput>
+        <h2>Meta</h2>
+        <MetaList></MetaList>
       </div>
       <EntryList class="grid-list"></EntryList>
     </div>
@@ -15,12 +20,16 @@
   import TheHeader from './components/TheHeader.vue';
   import EntryList from './components/EntryList.vue';
   import TagList from './components/TagList.vue';
+  import DateInput from './components/DateInput.vue';
+  import MetaList from './components/MetaList.vue';
 
   export default {
     components: {
       TheHeader,
       EntryList,
       TagList,
+      MetaList,
+      DateInput
     },
   }
 </script>
@@ -36,6 +45,9 @@
   --primary-accent-color: lightgray;
   --secondary-accent-color: gray;
   --primary-tag-color: lightgray;
+  --success-color: #1ecd62;
+
+  --gutter: 20px;
 }
 
 #app {
@@ -57,13 +69,13 @@ a {
 
 /* fonts */
 h1 {
-  font-size: calc(18px + (26 - 18) * (100vw - 320px) / (1200 - 320));
+  font-size: calc(22px + (32 - 22) * (100vw - 320px) / (1200 - 320));
   font-weight: 500;
 }
 
 h2 {
-  font-size: calc(16px + (22 - 16) * (100vw - 320px) / (1200 - 320));
-  font-weight: 600;
+  font-size: calc(18px + (22 - 18) * (100vw - 320px) / (1200 - 320));
+  font-weight: 500;
 }
 
 p {
@@ -72,11 +84,11 @@ p {
 
 @media screen and (min-width: 1200px) {
   h1 {
-    font-size: 26px;
+    font-size: 32px;
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   p {
@@ -122,7 +134,7 @@ li {
       "head head"
       "trending trending"
       "aside main";
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 3fr 7fr;
     grid-template-rows: auto;
     justify-items: center;
     padding: 0 20px;
@@ -156,6 +168,10 @@ li {
   height: auto;
   padding: 10px;
   justify-content: space-between;
+}
+
+.grid-sidebar h2 {
+  margin: 20px 0 0 0;
 }
 
 .grid-list {

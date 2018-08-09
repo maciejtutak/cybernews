@@ -3,7 +3,7 @@
     <input type="checkbox"
            id="editor"
            v-model="reviewedByEditor">
-    <label for="editor">reviewed by editor: {{ reviewedByEditor }}</label>
+    <label for="editor">only reviewed: {{ reviewedByEditor }}</label>
   </div>
 </template>
 
