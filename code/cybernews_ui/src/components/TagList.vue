@@ -75,4 +75,8 @@
 .sidebar-item input[type=checkbox]:checked + label {
   color: var(--secondary-text-color, orange);
 }
+
+.sidebar-item label {
+  cursor: pointer;
+}
 </style>
