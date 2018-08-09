@@ -13,7 +13,8 @@
       </masonry>
       <div v-if="day.length > 0" class="spacer"></div>
     </template>
-    <button v-on:click="loadMoreEntries" class="load-more-button">Load More</button>
+    <button v-on:click="loadMoreEntries" class="load-more-button" v-if="next != undefined">Load More</button>
+    <p v-if="next == undefined" class="no-more-items">There are no more items to show.</p>
   </div>
 </template>
 
@@ -131,5 +132,11 @@ h1 {
 
 .load-more-button:hover {
   background-color: var(--secondary-text-color, orange);
+}
+
+.no-more-items {
+  text-align: center;
+  color: var(--secondary-accent-color, gray);
+  font-style: italic;
 }
 </style>
