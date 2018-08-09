@@ -7,7 +7,6 @@
         <h2>Topic</h2>
         <TagList></TagList>
         <h2>Date</h2>
-        <DateInput></DateInput>
         <h2>Meta</h2>
         <MetaList></MetaList>
       </div>
@@ -20,7 +19,6 @@
   import TheHeader from './components/TheHeader.vue';
   import EntryList from './components/EntryList.vue';
   import TagList from './components/TagList.vue';
-  import DateInput from './components/DateInput.vue';
   import MetaList from './components/MetaList.vue';
 
   export default {
@@ -28,8 +26,7 @@
       TheHeader,
       EntryList,
       TagList,
-      MetaList,
-      DateInput
+      MetaList
     },
   }
 </script>

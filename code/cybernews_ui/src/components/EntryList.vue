@@ -13,6 +13,7 @@
       </masonry>
       <div class="spacer"></div>
     </template>
+    <button v-on:click="loadMoreEntries">Load More</button>
   </div>
 </template>
 
@@ -60,13 +61,28 @@
       axios
         .get(QueryStore.methods.getBaseQuery())
         .then((response) => {
-            this.count = response.data.count;
-            this.next = response.data.next;
-            this.items = response.data.results;
+          this.count = response.data.count;
+          this.next = response.data.next;
+          this.items = response.data.results;
           })
         .catch((error) => {
+          console.error(error);
+        });
+    },
+
+    methods: {
+      loadMoreEntries () {
+        console.log(this.next);
+        axios
+          .get(this.next)
+          .then((response) => {
+            this.next = response.data.next;
+            this.items.push(...response.data.results);
+          })
+          .catch((error) => {
             console.error(error);
-          });
+          })
+      }
     },
 
     computed: {
