@@ -12,6 +12,7 @@
       </div>
       <EntryList class="grid-list"></EntryList>
     </div>
+    <BackToTop></BackToTop>
   </div>
 </template>
 
@@ -20,13 +21,15 @@
   import EntryList from './components/EntryList.vue';
   import TagList from './components/TagList.vue';
   import MetaList from './components/MetaList.vue';
+  import BackToTop from './components/BackToTop.vue';
 
   export default {
     components: {
       TheHeader,
       EntryList,
       TagList,
-      MetaList
+      MetaList,
+      BackToTop
     },
   }
 </script>
@@ -36,9 +39,9 @@
 /* variables */
 :root {
   --primary-text-color: #242124;
-  --secondary-text-color: orange;
+  --secondary-text-color: darkorange;
   --small-text-color: #655d5f;
-  --primary-bg-color: #fafafa;
+  --primary-bg-color: #f8f8f8;
   --primary-accent-color: lightgray;
   --secondary-accent-color: gray;
   --primary-tag-color: lightgray;
@@ -57,6 +60,7 @@ body {
   margin: 0 auto;
   padding: 0;
   color: var(--primary-text-color, black);
+  background-color: var(--primary-bg-color, white);
 }
 
 a {

@@ -118,11 +118,12 @@ h1 {
 
 .load-more-button {
   margin: 0 auto 10px;
-  padding: 10px 30px;
-  border: 0;
+  padding: 12px 24px;
+  border: 1px solid lightgrey;
   display: block;
-  border-radius: 5px;
-  background-color: lightgray;
+  border-radius: 10px;
+  background-color: white;
+  color: gray;
   font-size: 100%;
   font-family: inherit;
   font-weight: 500;
@@ -131,7 +132,9 @@ h1 {
 }
 
 .load-more-button:hover {
-  background-color: var(--secondary-text-color, orange);
+  color: var(--primary-text-color, black);
+  border-color: var(--secondary-text-color, darkorange);
+  background-color: var(--secondary-text-color, darkorange);
 }
 
 .no-more-items {

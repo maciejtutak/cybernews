@@ -35,7 +35,7 @@
   font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1200 - 320));
   font-weight: 500;
   color: var(--primary-text-color, black);
-  transition: 0.2s;
+  transition: 0.05s;
 }
 
 @media screen and (min-width: 1200px) {
