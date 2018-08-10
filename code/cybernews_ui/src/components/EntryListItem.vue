@@ -70,6 +70,13 @@
   padding: 5px;
   border-radius: 5px;
   background-color: var(--primary-tag-color);
+  font-size: calc(14px + (16 - 14) * (100vw - 320px) / (1200 - 320));
+}
+
+@media screen and (min-width: 1200px) {
+  .item-card li {
+    font-size: 16px;
+  }
 }
 
 .item-reviewed {
