@@ -1,19 +1,24 @@
 <template>
   <div>
     <template v-for="(day, index) in splitIntoDays">
-      <h1 v-if="day.length > 0">{{ sections[index] }}</h1>
+      <h1 v-if="day.length">{{ sections[index] }}</h1>
       <masonry
+        v-if="day.length"
         :cols="{default: 2, 600: 1}"
-        :gutter="30">
+        :gutter="30"
+        :key="sections[index]">
           <EntryListItem
+            v-if="day.length"
             v-for="item in day"
-            v-bind:item="item"
-            v-bind:key="item.id">
+            :item="item"
+            :key="item.id">
           </EntryListItem>
       </masonry>
       <div v-if="day.length > 0" class="spacer"></div>
     </template>
-    <button v-on:click="loadMoreEntries" class="load-more-button" v-if="next != undefined">Load More</button>
+    <button v-on:click="loadMoreEntries"
+            class="load-more-button"
+            v-if="next != undefined && loadMoreVisible">Load More</button>
     <p v-if="next == undefined" class="no-more-items">There are no more items to show.</p>
   </div>
 </template>
@@ -36,7 +41,8 @@
         next: '',
         items: [],
         QueryStore: QueryStore.data,
-        sections: ['Today', 'Yesterday', 'Past Stories']
+        sections: ['Today', 'Yesterday', 'Past Stories'],
+        loadMoreVisible: false
       }
     },
 
@@ -58,6 +64,14 @@
       },
     },
 
+    created () {
+      window.addEventListener('scroll', this.handleScroll);
+    },
+
+    destroyed () {
+      window.removeEventListener('scroll', this.handleScroll);
+    },
+
     mounted () {
       axios
         .get(QueryStore.methods.getBaseQuery())
@@ -73,7 +87,6 @@
 
     methods: {
       loadMoreEntries () {
-        console.log(this.next);
         axios
           .get(this.next)
           .then((response) => {
@@ -83,6 +96,11 @@
           .catch((error) => {
             console.error(error);
           })
+      },
+      handleScroll () {
+        if (window.scrollY > document.body.scrollHeight - 1000) {
+          this.loadMoreVisible = true;
+        }
       }
     },
 
@@ -117,7 +135,7 @@ h1 {
 }
 
 .load-more-button {
-  margin: 0 auto 10px;
+  margin: 0 auto 50px;
   padding: 12px 24px;
   border: 1px solid lightgrey;
   display: block;

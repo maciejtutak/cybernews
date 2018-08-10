@@ -7,6 +7,9 @@
              v-model="selectedTags">
       <label :for="tag.name">{{ tag.name }}</label>
     </li>
+    <li class="sidebar-item">
+      <button v-on:click="clearTags">clear selected</button>
+    </li>
   </ul>
 </template>
 
@@ -22,7 +25,7 @@
     data () {
       return {
         tags: [],
-        selectedTags: []
+        selectedTags: [],
       }
     },
 
@@ -41,8 +44,14 @@
       selectedTags (newTags) {
         FilterStore.methods.setSelectedTags(newTags);
         QueryStore.methods.setQuery(QueryStore.methods.getBaseQuery() + FilterStore.methods.getFilterQuery());
-      }
+      },
     },
+
+    methods: {
+      clearTags () {
+        this.selectedTags.splice(0, this.selectedTags.length);
+      }
+    }
 
   }
 </script>
@@ -78,6 +87,13 @@
 }
 
 .sidebar-item label {
+  cursor: pointer;
+}
+
+.sidebar-item button {
+  all: inherit;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
 }
 </style>

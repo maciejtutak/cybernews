@@ -1,4 +1,5 @@
 <template>
+  <transition name="slide-fade">
   <a :href="item.article.url">
     <div class="item-card">
       <div v-if="item.user_reviewed" class="item-reviewed">
@@ -17,6 +18,7 @@
       </div>
     </div>
   </a>
+  </transition>
 </template>
 
 <script>
@@ -46,6 +48,18 @@
 </script>
 
 <style scoped>
+ .slide-fade-enter-active {
+   transition: opacity .5s ease-in;
+ }
+
+ .slide-fade-leave-active {
+   transition: opacity .3s ease-out;
+ }
+
+.slide-fade-enter, .slide-fade-leave-to {
+  opacity: 0;
+}
+
 .item-card {
   position: relative;
   margin-bottom: 25px;
