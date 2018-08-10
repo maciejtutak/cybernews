@@ -73,6 +73,7 @@
   opacity: 0;
   color: gray;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .back-to-top:hover {
