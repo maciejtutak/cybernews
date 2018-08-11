@@ -41,7 +41,7 @@
         });
       },
       duration: function (length) {
-        return Math.round(length / 250);
+        return Math.round(length / 200);
       }
     }
   }

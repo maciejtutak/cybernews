@@ -6,12 +6,13 @@
       v-model="dateFrom.date"
       :disabledDates="dateFrom.disabledDates"
       format="dd/MM/yyyy"
-      placeholder="dd/mm/yyyy"
+      placeholder="select date"
       :monday-first="true"
       wrapper-class="datepicker"
       input-class="datepicker-input"
       calendar-class="datepicker-calendar"></datepicker>
     </div>
+    :
     <!--&#8212;-->
     <div>
       <datepicker
@@ -19,7 +20,7 @@
         v-model="dateTo.date"
         :disabledDates="dateTo.disabledDates"
         format="dd/MM/yyyy"
-        placeholder="dd/mm/yyyy"
+        placeholder="select date"
         :monday-first="true"
         wrapper-class="datepicker"
         input-class="datepicker-input"
@@ -85,8 +86,8 @@
 }
 
 .sidebar-date div {
-  margin: 10px 0 0 0;
-  display: block;
+  margin: 2px 0 0 0;
+  display: inline-block;
 }
 </style>
 
@@ -98,9 +99,10 @@
 .datepicker-input {
   margin: 0;
   padding: 4px;
-  width: 110px;
-  border: 1px solid var(--primary-accent-color, gray);
+  width: 100px;
+  border: 1px solid var(--primary-accent-color, lightgray);
   border-radius: 5px;
+  color: var(--secondary-accent-color, gray);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   text-align: center;
