@@ -9,7 +9,6 @@ const QueryStore = {
       return QueryStore.data.baseQuery;
     },
     setQuery(query) {
-      console.log('setQuery triggered');
       QueryStore.data.query = query;
     }
   }

@@ -23,11 +23,9 @@ const FilterStore = {
       if (FilterStore.data.dateTo) {
         filterString += 'date_range_1=' + moment(FilterStore.data.dateTo).format('YYYY-MM-DD') + '&';
       }
-      console.log(filterString);
       return filterString;
     },
     setSelectedTags(selectedTags) {
-      console.log(selectedTags);
       FilterStore.data.selectedTags.splice(0, FilterStore.data.selectedTags.length, ...selectedTags);
     },
     setReviewedByEditor(reviewedByEditor) {
