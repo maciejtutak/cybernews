@@ -98,7 +98,8 @@
           })
       },
       handleScroll () {
-        if (window.scrollY > document.body.scrollHeight - 1000) {
+        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        if (window.scrollY > scrollHeight - 1000) {
           this.loadMoreVisible = true;
         }
       }
